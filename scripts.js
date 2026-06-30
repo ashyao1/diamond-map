@@ -39,7 +39,7 @@ function fordata(inputdata) {
         for(let beamline of group["beamlines"]) {
             console.log(beamline["position"])
             var marker = L.marker(beamline["position"]).addTo(map);
-            marker.bindPopup(beamline["name"]).openPopup();
+            marker.bindPopup(`<h2>${beamline["name"]}</h2> <p>${beamline["description"]}</p>`).openPopup();
         }
     }
 }
