@@ -57,12 +57,18 @@ fetch("beamlines_data.json")
 
 map.locate({setView: true, maxZoom: 20});
 
+var stickmanIcon = L.icon({
+    iconUrl: "Stickman.png",
+    iconSize:     [50, 80], // size of the icon
+    iconAnchor:   [28, 41], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -86] // point from which the popup should open relative to the iconAnchor
+})
+
 function onLocationFound(e) {
     var radius = e.accuracy;
 
-    L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters from here").openPopup();
-
+    L.marker(e.latlng, {icon:stickmanIcon}).addTo(map)
+        .bindPopup("You are within " + radius + " meters of here").openPopup();
     L.circle(e.latlng, radius).addTo(map);
 }
 
