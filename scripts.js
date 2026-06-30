@@ -14,3 +14,4 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var marker = L.marker([51.574349, -1.310892]).addTo(map);
+marker.bindPopup("Diamond Light Source").openPopup();
