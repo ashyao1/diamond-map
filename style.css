@@ -1,17 +1,9 @@
 body{
-     background-color: rgb(116, 116, 139);
+     background-color: rgb(171, 171, 189);
 }
 
-h1{
-    color:rgb(255, 255, 255);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+#map { 
+    height: 300; 
+    width: 300;
 }
 
-.text{
-    color:white
-}
-
-#button1{
-    height: 50;
-    width: 100;
-}
