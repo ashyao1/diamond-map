@@ -55,3 +55,15 @@ fetch("beamlines_data.json")
     .then(data => fordata(data))
     .catch(error => console.error("There was a problem with the fetch operation:", error))
 
+map.locate({setView: true, maxZoom: 20});
+
+function onLocationFound(e) {
+    var radius = e.accuracy;
+
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from here").openPopup();
+
+    L.circle(e.latlng, radius).addTo(map);
+}
+
+map.on('locationfound', onLocationFound);
