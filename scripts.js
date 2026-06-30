@@ -15,3 +15,19 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var marker = L.marker([51.574349, -1.310892]).addTo(map);
 marker.bindPopup("Diamond Light Source").openPopup();
+
+var imageUrl = 'BaseUnder.png'
+var latLngBounds = L.latLngBounds([[51.57168183170403, -1.304454803466797], [51.57701619673675, -1.3173294067382815]]);
+
+var imageOverlay = L.imageOverlay(imageUrl, latLngBounds, {
+    opacity: 1.0,
+    interactive: true
+}).addTo(map);
+
+var imageUrl = 'BaseOver.png'
+var latLngBounds = L.latLngBounds([[51.57168183170403, -1.304454803466797], [51.57701619673675, -1.3173294067382815]]);
+
+var imageOverlay = L.imageOverlay(imageUrl, latLngBounds, {
+    opacity: 1.0,
+    interactive: true
+}).addTo(map);
