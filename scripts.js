@@ -31,3 +31,27 @@ var imageOverlay = L.imageOverlay(imageUrl, latLngBounds, {
     opacity: 1.0,
     interactive: true
 }).addTo(map);
+
+function fordata(inputdata) {
+    console.log(inputdata)
+    for(let group of inputdata) {
+        console.log(group["name"])
+        for(let beamline of group["beamlines"]) {
+            console.log(beamline["position"])
+            var marker = L.marker(beamline["position"]).addTo(map);
+            marker.bindPopup(beamline["name"]).openPopup();
+        }
+    }
+}
+
+fetch("beamlines_data.json")
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Network response was not ok");
+        }
+    })
+    .then(data => fordata(data))
+    .catch(error => console.error("There was a problem with the fetch operation:", error))
+
