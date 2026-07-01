@@ -64,12 +64,16 @@ var stickmanIcon = L.icon({
     popupAnchor:  [0, -86] // point from which the popup should open relative to the iconAnchor
 })
 
+let usercircle = L.circle([0, 0], 0).addTo(map);
+
 function onLocationFound(e) {
     var radius = e.accuracy;
+    var location = e.latlng
 
     L.marker(e.latlng, {icon:stickmanIcon}).addTo(map)
         .bindPopup("You are within " + radius + " meters of here").openPopup();
-    L.circle(e.latlng, radius).addTo(map);
+    usercircle.setLatLng(location)
+    usercircle.setRadius(radius)
 }
 
 map.on('locationfound', onLocationFound);
