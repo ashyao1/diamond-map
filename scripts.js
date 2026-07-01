@@ -35,14 +35,37 @@ var imageOverlay = L.imageOverlay(imageUrl, latLngBounds, {
 function fordata(inputdata) {
     
     var overlayMaps = {}
+    var markercolours = [
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png",
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png",
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png",
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png",
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png"
+    ]
+
 
     console.log(inputdata)
-    for(let group of inputdata) {
+    for(let [index, group] of inputdata.entries()) {
+        
+        console.log(markercolours[index])
+
+         var colouricon = new L.Icon({
+            iconUrl: markercolours[index],
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
         var bllayers = []
         console.log(group["name"])
         for(let beamline of group["beamlines"]) {
             console.log(beamline["position"])
-            var marker = L.marker(beamline["position"]).addTo(map);
+            var marker = L.marker(beamline["position"], {icon:colouricon}).addTo(map);
             marker.bindPopup(`<h2>${beamline["name"]}</h2> <p>${beamline["description"]}</p>`).openPopup();
             bllayers.push(marker)
         }
@@ -70,8 +93,8 @@ map.locate({setView: false, watch: true});
 var stickmanIcon = L.icon({
     iconUrl: "Stickman.png",
     iconSize:     [15, 24], // size of the icon
-    iconAnchor:   [28, 41], // point of the icon which will correspond to marker's location
-    popupAnchor:  [0, -86] // point from which the popup should open relative to the iconAnchor
+    iconAnchor:   [6, 13], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -26] // point from which the popup should open relative to the iconAnchor
 })
 
 let usercircle = L.circle([0, 0], 0).addTo(map);
