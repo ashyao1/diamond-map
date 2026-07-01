@@ -59,7 +59,7 @@ map.locate({setView: false, watch: true});
 
 var stickmanIcon = L.icon({
     iconUrl: "Stickman.png",
-    iconSize:     [25, 40], // size of the icon
+    iconSize:     [15, 24], // size of the icon
     iconAnchor:   [28, 41], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, -86] // point from which the popup should open relative to the iconAnchor
 })
