@@ -33,15 +33,25 @@ var imageOverlay = L.imageOverlay(imageUrl, latLngBounds, {
 }).addTo(map);
 
 function fordata(inputdata) {
+    
+    var overlayMaps = {}
+
     console.log(inputdata)
     for(let group of inputdata) {
+        var bllayers = []
         console.log(group["name"])
         for(let beamline of group["beamlines"]) {
             console.log(beamline["position"])
             var marker = L.marker(beamline["position"]).addTo(map);
             marker.bindPopup(`<h2>${beamline["name"]}</h2> <p>${beamline["description"]}</p>`).openPopup();
+            bllayers.push(marker)
         }
+
+        var blgroup = L.layerGroup(bllayers)
+        blgroup.addTo(map)
+        overlayMaps[group["name"]] = blgroup
     }
+    var layercontrol = L.control.layers(null, overlayMaps).addTo(map);
 }
 
 fetch("beamlines_data.json")
@@ -78,3 +88,6 @@ function onLocationFound(e) {
 }
 
 map.on('locationfound', onLocationFound);
+
+let markertoggle = L.control()
+markertoggle.position(topright)
