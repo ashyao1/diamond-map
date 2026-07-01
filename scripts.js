@@ -72,7 +72,7 @@ function onLocationFound(e) {
     var location = e.latlng
 
     usericon.setLatLng(location)
-        .bindPopup("You are within " + radius + " meters of here").openPopup();
+    usericon.bindPopup("You are within " + radius + " meters of here").openPopup();
     usercircle.setLatLng(location)
     usercircle.setRadius(radius)
 }
