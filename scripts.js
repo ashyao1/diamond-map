@@ -65,12 +65,13 @@ var stickmanIcon = L.icon({
 })
 
 let usercircle = L.circle([0, 0], 0).addTo(map);
+let usericon = L.marker([0,0], {icon:stickmanIcon}).addTo(map);
 
 function onLocationFound(e) {
     var radius = e.accuracy;
     var location = e.latlng
 
-    L.marker(e.latlng, {icon:stickmanIcon}).addTo(map)
+    usericon.setLatLng(location)
         .bindPopup("You are within " + radius + " meters of here").openPopup();
     usercircle.setLatLng(location)
     usercircle.setRadius(radius)
