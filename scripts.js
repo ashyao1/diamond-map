@@ -55,7 +55,7 @@ fetch("beamlines_data.json")
     .then(data => fordata(data))
     .catch(error => console.error("There was a problem with the fetch operation:", error))
 
-map.locate({setView: true, maxZoom: 20, watch: true});
+map.locate({setView: false, watch: true});
 
 var stickmanIcon = L.icon({
     iconUrl: "Stickman.png",
